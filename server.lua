@@ -53,7 +53,6 @@ AddEventHandler("bank:getloan", function(id, cb))
 					["@identifier"] = xPlayer.identifier
 				},
 				function result (result)
-				--this needs help
 					local loans = {}
 
 						for i=1, #result, 1 do
