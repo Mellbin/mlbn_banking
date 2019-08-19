@@ -7,6 +7,7 @@ CREATE TABLE `loans` (
   `amount` int(11) NOT NULL,
   "loan" int(11) NOT NULL,
   "creditValue" INT(11) NOT NULL,
+  "amountPayedBack" INT(11) NOT NULL,
 
   PRIMARY KEY (`id`)
 );
