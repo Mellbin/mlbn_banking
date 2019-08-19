@@ -217,6 +217,14 @@ RegisterNUICallback(("loan", function(data)
 end)
 
 --===============================================
+--==              pay Loan Event                 ==
+--===============================================
+RegisterNUICallback(("payLoan", function(data)
+  TriggerServerEvent("bank:payLoan", tonumber(data.amountl))
+  TriggerServerEvent("bank:balance")
+end)
+
+--===============================================
 --==          Withdraw Event                   ==
 --===============================================
 RegisterNUICallback('withdrawl', function(data)

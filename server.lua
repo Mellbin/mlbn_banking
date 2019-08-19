@@ -62,6 +62,7 @@ AddEventHandler("bank:getloan", function(id, cb))
 								amount = result[i].amount
 								loan = result[i].loan
 								creditValue = result[i].creditValue
+								amountPayedBack = result[i].amountPayedBack
 						})
 					end
 					cb(result)
@@ -72,12 +73,48 @@ RegisterServerEvent("bank:loan")
 AddEventHandler("bank:loan", function(amountl))
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
-	local loanBalance = xPlayer.getAccount("bank").loan
+	local loanBalance = result.amount
+	local _creditValue = result.creditValue
+
+	MySQL.async.fetchALL(
+	"select * FROM loans WHERE identifier = @identifier", {
+		["@identifier"] = xPlayer.identifier
+	},
+	function result (result)
+		local loans = {}
+
+			for i=1, #result, 1 do
+				TABLE.insert(loans ,{
+					id = result[i].id
+					identifier = result[i].identifier
+					amount = result[i].amount
+					loan = result[i].loan
+					creditValue = result[i].creditValue
+					amountPayedBack = result[i].amountPayedBack
+			})
+		end
+		cb(result)
+	end
+)
+
+
+--kollar om spelaren kan ta ut lånet
+	if amountl + _creditValue =< _creditValue
+	xPlayer.addAccountMoney("bank", tonumber(amountl))
+  loanBalance = loanBalance + amountl
+else
+	TriggerClientEvent("chatMessage", _source, "Du har redan maxat dina lån.")
+end
+
+
+RegisterServerEvent("bank:payLoan")
+AddEventHandler("bank:payLoan", function(amountlp)
 
 
 
+)
 
-s
+
 RegisterServerEvent('bank:transfer')
 AddEventHandler('bank:transfer', function(to, amountt)
 	local _source = source
