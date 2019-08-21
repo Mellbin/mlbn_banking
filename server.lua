@@ -19,7 +19,7 @@ AddEventHandler('bank:deposit', function(amount)
 	end
 end)
 
-
+--hej
 RegisterServerEvent('bank:withdraw')
 AddEventHandler('bank:withdraw', function(amount)
 	local _source = source
