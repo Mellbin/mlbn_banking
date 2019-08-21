@@ -2,6 +2,7 @@
 --==                                VARIABLES - DO NOT EDIT                                     ==
 --================================================================================================
 ESX = nil
+require "resources/essentialmode/lib/MySQL"
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
@@ -109,7 +110,12 @@ end
 
 RegisterServerEvent("bank:payLoan")
 AddEventHandler("bank:payLoan", function(amountlp)
-
+		local playerMoney = xPlayer.getMoney()
+		if playerMoney => amountlp
+		xPlayer.removeAccountMoney(amountlp)
+		loanBalance = loanBalance - amountlp
+		amountPayedBack = amountPayedBack + amountlp
+	end
 
 
 )
