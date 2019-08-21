@@ -220,7 +220,7 @@ end)
 --==              pay Loan Event                 ==
 --===============================================
 RegisterNUICallback(("payLoan", function(data)
-  TriggerServerEvent("bank:payLoan", tonumber(data.amountl))
+  TriggerServerEvent("bank:payLoan", tonumber(data.amountlp))
   TriggerServerEvent("bank:balance")
 end)
 
