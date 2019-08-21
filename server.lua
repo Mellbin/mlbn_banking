@@ -100,9 +100,12 @@ AddEventHandler("bank:loan", function(amountl))
 
 
 --kollar om spelaren kan ta ut lånet
-	if amountl + _creditValue =< _creditValue
+	if amountl + _creditValue * 0,07 =< _creditValue and loanBalance < 0 then
 	xPlayer.addAccountMoney("bank", tonumber(amountl))
-  loanBalance = loanBalance + amountl
+  loanBalance = (loanBalance + amountl) * 0,07
+	TriggerClientEvent("chatMessage", _source, "Du lånade" + amountl)
+elseif loanBalance > 0 then
+	TriggerClientEvent("chatMessage", _source, "Du måste betala tillbaka dina nuvarande lån innan du kan ta ett nytt.")
 else
 	TriggerClientEvent("chatMessage", _source, "Du har redan maxat dina lån.")
 end
@@ -111,7 +114,7 @@ end
 RegisterServerEvent("bank:payLoan")
 AddEventHandler("bank:payLoan", function(amountlp)
 		local playerMoney = xPlayer.getMoney()
-		if playerMoney => amountlp
+		if playerMoney => amountlp then
 		xPlayer.removeAccountMoney(amountlp)
 		loanBalance = loanBalance - amountlp
 		amountPayedBack = amountPayedBack + amountlp
