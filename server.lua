@@ -124,7 +124,7 @@ AddEventHandler("bank:payLoan", function(amountlp)
 	end
 
 
-)
+
 
 
 RegisterServerEvent('bank:transfer')
