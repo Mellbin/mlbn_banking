@@ -118,6 +118,9 @@ AddEventHandler("bank:payLoan", function(amountlp)
 		xPlayer.removeAccountMoney(amountlp)
 		loanBalance = loanBalance - amountlp
 		amountPayedBack = amountPayedBack + amountlp
+		TriggerClientEvent("chatMessage", _source, "du har betalat " + amountlp)
+	else
+		TriggerClientEvent("chatMessage", _source, "Du har inte råd att betala det.")
 	end
 
 
